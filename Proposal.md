@@ -19,6 +19,12 @@ Of these 12 columns, only `show_id`, `director`, `cast`, and `description` will 
 
 #### Research questions you are exploring
 
+Research questions to answer:
+- Which countries do longer length movies tend to be filmed in?
+- Which countries are the most popular to film movies in?
+- Which genres are the most popular in the fall vs. winter?
+- Are there less R movies than PG-13-rated films on Netflix?
+
 User story:
 Betty is an executive for Film In The Blank Studios. As the popularity of streaming has increased, Betty wants to understand movie streaming trends so she knows what types of movies tend to be picked up by companies like Netflix. She wants to be able to explore a dataset that compares the different genres, lengths, filming locations, and ratings of movies in order to know what kind of films Film In The Blank Studios should produce if they want to be picked up a streaming platform. 
 
