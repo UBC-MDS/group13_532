@@ -11,7 +11,7 @@ plot=alt.Chart(data).mark_line().encode(
          color='rating')
 
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-# server= src.app.server
+server= app.server
 
 app.layout = dbc.Container([
     html.H1('Netflix Movie Trend'),
