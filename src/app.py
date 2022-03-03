@@ -17,7 +17,7 @@ def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
         x = alt.X("release_year",  
                   title = "Movie Release Year", 
-                  scale=alt.Scale(domain=[1935, 2022]), 
+                  scale=alt.Scale(domain=[1942, 2020]), 
                  axis=alt.Axis(format='f')),
         
         y = alt.Y("mean(cast_count)", 
