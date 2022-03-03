@@ -165,6 +165,7 @@ app.layout = dbc.Container(
     Output("line", "srcDoc"),
     Input("range-slider", "value"),
     Input("rating_widget", "value"),
+)
 
 # Mahsa plot function
 def rating_plot(year_range, ratings):
