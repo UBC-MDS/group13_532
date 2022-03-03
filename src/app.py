@@ -156,10 +156,10 @@ app.layout = dbc.Container(
 )
 
 
-# @app.callback(
-#     Output('scatter', 'srcDoc'),
-#     Input('xslider', 'value'),
-# )
+@app.callback(
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
+)
 
 @app.callback(
     Output("line", "srcDoc"),
