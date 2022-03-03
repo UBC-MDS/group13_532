@@ -155,14 +155,15 @@ app.layout = dbc.Container(
     ]
 )
 
-
-@app.callback(
-    Output('scatter', 'srcDoc'),
-    Input('xslider', 'value'),
-)
+# @app.callback(
+#         Output('scatter', 'srcDoc'),
+#     Input('xslider', 'value'),
+# )
 
 @app.callback(
     Output("line", "srcDoc"),
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
     Input("range-slider", "value"),
     Input("rating_widget", "value"),
 )
