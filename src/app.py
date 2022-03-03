@@ -157,12 +157,14 @@ app.layout = dbc.Container(
 
 
 @app.callback(
-    Output("line", "srcDoc"),
     Output('scatter', 'srcDoc'),
-    Input("range-slider", "value"),
-    Input("rating_widget", "value"),
     Input('xslider', 'value'),
 )
+
+@app.callback(
+    Output("line", "srcDoc"),
+    Input("range-slider", "value"),
+    Input("rating_widget", "value"),
 
 # Mahsa plot function
 def rating_plot(year_range, ratings):
