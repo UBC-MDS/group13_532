@@ -10,9 +10,9 @@ data = pd.read_csv("data/processed/clean_df.csv")
 # Jasmine data wrangling
 
 
-df["cast_list"] = df["cast"].str.split(",")
-df["cast_count"] = df["cast_list"].str.len()
-cast_df = df[["title", "cast", "listed_in", "cast_count", "release_year"]]
+data["cast_list"] = data["cast"].str.split(",")
+data["cast_count"] = data["cast_list"].str.len()
+cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
 
 # Mahsa data wrangling
 rating_list = [
@@ -58,6 +58,7 @@ app.layout = dbc.Container(
         html.Br(),
         dbc.Row(
             [
+                
                 # Jasmine Part
                 dbc.Col(
                  html.Div(
