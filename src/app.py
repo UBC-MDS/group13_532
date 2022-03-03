@@ -5,7 +5,7 @@ import pandas as pd
 
 alt.data_transformers.disable_max_rows()
 
-data = pd.read_csv("data/processed/clean_df.csv")
+data = pd.read_csv("clean_df.csv")
 
 # Jasmine data wrangling
 
@@ -13,6 +13,24 @@ data = pd.read_csv("data/processed/clean_df.csv")
 data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
 cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
+
+# Jasmine plot function
+def plot_cast(xmax):
+    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
+        x = alt.X("release_year",  
+                  title = "Movie Release Year", 
+                  scale=alt.Scale(domain=[1935, 2022]), 
+                 axis=alt.Axis(format='f')),
+        
+        y = alt.Y("mean(cast_count)", 
+                  title="Average Cast Size",
+                  axis=alt.Axis(tickMinStep=1)
+                 )
+    )
+    return cast_plot.to_html()
+
+def update_output(xmax):
+    return plot_cast(xmax)
 
 # Mahsa data wrangling
 rating_list = [
@@ -147,24 +165,6 @@ app.layout = dbc.Container(
     Input("rating_widget", "value"),
     Input('xslider', 'value'),
 )
-
-# Jasmine plot function
-def plot_cast(xmax):
-    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
-        x = alt.X("release_year",  
-                  title = "Movie Release Year", 
-                  scale=alt.Scale(domain=[1935, 2022]), 
-                 axis=alt.Axis(format='f')),
-        
-        y = alt.Y("mean(cast_count)", 
-                  title="Average Cast Size",
-                  axis=alt.Axis(tickMinStep=1)
-                 )
-    )
-    return cast_plot.to_html()
-
-def update_output(xmax):
-    return plot_cast(xmax)
 
 # Mahsa plot function
 def rating_plot(year_range, ratings):
