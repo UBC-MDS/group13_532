@@ -5,11 +5,9 @@ import pandas as pd
 
 alt.data_transformers.disable_max_rows()
 
-data = pd.read_csv("clean_df.csv")
+data = pd.read_csv("data/processed/clean_df.csv")
 
 # Jasmine data wrangling
-
-
 data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
 cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
