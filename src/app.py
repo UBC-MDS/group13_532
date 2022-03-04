@@ -13,10 +13,10 @@ data["cast_count"] = data["cast_list"].str.len()
 cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
 
 # this doesnt appear to do anything 
-@app.callback(
-    Output('scatter', 'srcDoc'),
-    Input('xslider', 'value'),
-)
+# @app.callback(
+#     Output('scatter', 'srcDoc'),
+#     Input('xslider', 'value'),
+# )
 
 # Jasmine plot function
 def plot_cast(xmax):
