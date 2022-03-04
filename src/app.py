@@ -167,6 +167,8 @@ app.layout = dbc.Container(
     Output("line", "srcDoc"),
     Input("range-slider", "value"),
     Input("rating_widget", "value"),
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
 )
 
 # Mahsa plot function
