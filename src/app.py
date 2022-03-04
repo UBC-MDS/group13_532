@@ -81,7 +81,7 @@ app.layout = dbc.Container(
                      [
                     html.Iframe(
                         id="scatter", 
-#                         srcDoc=plot_cast(xmax=2020),
+                        srcDoc=plot_cast(xmax=2020),
                        style={
                            'border-width': '0', 
                            'width': '100%', 
