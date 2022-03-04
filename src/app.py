@@ -12,6 +12,12 @@ data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
 cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
 
+# this doesnt appear to do anything 
+@app.callback(
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
+)
+
 # Jasmine plot function
 def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
@@ -27,14 +33,10 @@ def plot_cast(xmax):
     )
     return cast_plot.to_html()
 
-# this doesnt appear to do anything 
-@app.callback(
-    Output('scatter', 'srcDoc'),
-    Input('xslider', 'value'),
-)
-
 def update_output(xmax):
     return plot_cast(xmax)
+
+
 
 # Mahsa data wrangling
 rating_list = [
