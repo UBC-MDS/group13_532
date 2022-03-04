@@ -12,31 +12,6 @@ data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
 cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
 
-# this doesnt appear to do anything 
-# @app.callback(
-#     Output('scatter', 'srcDoc'),
-#     Input('xslider', 'value'),
-# )
-
-# Jasmine plot function
-def plot_cast(xmax):
-    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
-        x = alt.X("release_year",  
-                  title = "Movie Release Year", 
-                  scale=alt.Scale(domain=[1942, 2020]), 
-                 axis=alt.Axis(format='f')),
-        
-        y = alt.Y("mean(cast_count)", 
-                  title="Average Cast Size",
-                  axis=alt.Axis(tickMinStep=1)
-                 )
-    )
-    return cast_plot.to_html()
-
-def update_output(xmax):
-    return plot_cast(xmax)
-
-
 
 # Mahsa data wrangling
 rating_list = [
@@ -73,7 +48,7 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                ############## Sufang Part
+                # Sufang Part
                 dbc.Col(
                     dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
                 ),
@@ -82,35 +57,35 @@ app.layout = dbc.Container(
         html.Br(),
         dbc.Row(
             [
-                
+
                 # Jasmine Part
                 dbc.Col(
-                 html.Div(
-                     [
-                    html.Iframe(
-                        id="scatter", 
-                        srcDoc=plot_cast(xmax=2020),
-                       style={
-                           'border-width': '0', 
-                           'width': '100%', 
-                           'height': '400px'
-                       }
-                    ),
-                    dcc.Slider(id='xslider', 
-                               min=1942, max=2020,
-                                marks={
-                                       1942: '1942', 
-                                       1962: '1962',
-                                       1980:'1980',
-                                       2000: '2000',
-                                       2020:'2020'
+                    html.Div(
+                        [
+                            html.Iframe(
+                                id="scatter",
+                                style={
+                                    'border-width': '0',
+                                    'width': '100%',
+                                    'height': '400px'
                                 }
-                              )
-                     ]
-                 )
+                            ),
+                            dcc.Slider(id='xslider',
+                                       min=1942, max=2020,
+                                       value=2020,
+                                       marks={
+                                           1942: '1942',
+                                           1962: '1962',
+                                           1980: '1980',
+                                           2000: '2000',
+                                           2020: '2020'
+                                       }
+                                       )
+                        ]
+                    )
                 ),
-                
-                
+
+
                 # Mahsa Part
                 dbc.Col(
                     [
@@ -165,12 +140,12 @@ app.layout = dbc.Container(
     ]
 )
 
+
 @app.callback(
     Output("line", "srcDoc"),
     Input("range-slider", "value"),
     Input("rating_widget", "value"),
 )
-
 # Mahsa plot function
 def rating_plot(year_range, ratings):
     line_plot = (
@@ -186,6 +161,31 @@ def rating_plot(year_range, ratings):
         .interactive()
     )
     return line_plot.to_html()
+
+
+# this doesnt appear to do anything
+@app.callback(
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
+)
+# Jasmine plot function
+def plot_cast(xmax):
+    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title="Average Cast Size Per Year").mark_circle().encode(
+        x=alt.X("release_year",
+                title="Movie Release Year",
+                scale=alt.Scale(domain=[1942, 2020]),
+                axis=alt.Axis(format='f')),
+
+        y=alt.Y("mean(cast_count)",
+                title="Average Cast Size",
+                axis=alt.Axis(tickMinStep=1)
+                )
+    )
+    return cast_plot.to_html()
+
+
+def update_output(xmax):
+    return plot_cast(xmax)
 
 
 if __name__ == "__main__":
