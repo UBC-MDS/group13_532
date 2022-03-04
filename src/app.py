@@ -6,6 +6,11 @@ import pandas as pd
 alt.data_transformers.disable_max_rows()
 
 data = pd.read_csv("data/processed/clean_df.csv")
+#Sufang data wrangling
+for i, movie in enumerate(data['duration'].str.split()):
+    data['duration'][i] = int(movie[0])
+
+data = data.assign(country=data["country"].str.split(", ")).explode("country").dropna()
 
 # Jasmine data wrangling
 data["cast_list"] = data["cast"].str.split(",")
@@ -65,9 +70,46 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                ############## Sufang Part
+                # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
+                    html.Div([
+        dbc.Label("Year", html_for="range-slider"),
+        dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2020], marks={
+                                        1950: "1950",
+                                        1955: "1955",
+                                        1960: "1960",
+                                        1965: "1965",
+                                        1970: "1970",
+                                        1975: "1975",
+                                        1980: "1980",
+                                        1985: "1985",
+                                        1990: "1990",
+                                        1995: "1995",
+                                        2000: "2000",
+                                        2005: "2005",
+                                        2010: "2010",
+                                        2015: "2015",
+                                        2020: "2020",
+                                    },),
+        dbc.Label("Duration", html_for="range-slider"),
+        dcc.RangeSlider(id='duration', min = min(data['duration']), max = max(data['duration']), value=[60, 120], marks={
+                                        10: "10",
+                                        30: "30",
+                                        50: "50",
+                                        70: "70",
+                                        90: "90",
+                                        110: "110",
+                                        130: "130",
+                                        150: "150",
+                                        170: "170",
+                                        190: "190",
+                                        210: "210",
+                                        230: "230",
+                                    },),
+        html.Iframe(
+            id='bar',
+            style={'border-width': '0', 'width': '100%', 'height': '400px'})])
+
                 ),
             ]
         ),
@@ -156,6 +198,25 @@ app.layout = dbc.Container(
         ),
     ]
 )
+@app.callback(
+    Output('bar', 'srcDoc'),
+    Input('year','value'),
+    Input('duration','value'))
+
+# Sufang plot function
+def plot_altair(year_range, duration_range):
+    chart = alt.Chart(data[(data["release_year"] > year_range[0]) & (data["release_year"] < year_range[1]) 
+                & (data["duration"] > duration_range[0])
+                & (data["duration"] < duration_range[1])],
+        title='Which Country Make the Most Movies ?').mark_bar().encode(
+    alt.X('country', sort='-y', title='Country'),
+    alt.Y('count()', title='Number of Movies Produced'),
+    color=alt.condition(
+        alt.datum.country == 'United State',  
+        alt.value('orange'),     # which sets the bar orange.
+        alt.value('steelblue')
+    )).interactive()
+    return chart.to_html()
 
 # this doesnt appear to do anything 
 # @app.callback(
