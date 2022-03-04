@@ -14,7 +14,7 @@ cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
 
 # Jasmine plot function
 def plot_cast(xmax):
-    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], title = "Average Cast Size Per Year").mark_circle().encode(
+    cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax[1]], title = "Average Cast Size Per Year").mark_circle().encode(
         x = alt.X("release_year",  
                   title = "Movie Release Year", 
                   scale=alt.Scale(domain=[1942, 2020]), 
@@ -81,7 +81,7 @@ app.layout = dbc.Container(
                      [
                     html.Iframe(
                         id="scatter", 
-                        srcDoc=plot_cast(xmax=2020),
+#                         srcDoc=plot_cast(xmax=2020),
                        style={
                            'border-width': '0', 
                            'width': '100%', 
@@ -101,6 +101,8 @@ app.layout = dbc.Container(
                      ]
                  )
                 ),
+                
+                
                 # Mahsa Part
                 dbc.Col(
                     [
