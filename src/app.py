@@ -27,6 +27,12 @@ def plot_cast(xmax):
     )
     return cast_plot.to_html()
 
+# this doesnt appear to do anything 
+@app.callback(
+    Output('scatter', 'srcDoc'),
+    Input('xslider', 'value'),
+)
+
 def update_output(xmax):
     return plot_cast(xmax)
 
@@ -156,12 +162,6 @@ app.layout = dbc.Container(
         ),
     ]
 )
-
-# this doesnt appear to do anything 
-# @app.callback(
-#         Output('scatter', 'srcDoc'),
-#     Input('xslider', 'value'),
-# )
 
 @app.callback(
     Output("line", "srcDoc"),
