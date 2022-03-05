@@ -49,9 +49,49 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 # Sufang Part
-                dbc.Col(
-                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
-                ),
+                
+                    dbc.Card(dbc.CardBody(
+                        html.Div([
+        dbc.Label("Year", html_for="range-slider"),
+        dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2015], marks={
+                                        1950: "1950",
+                                        1955: "1955",
+                                        1960: "1960",
+                                        1965: "1965",
+                                        1970: "1970",
+                                        1975: "1975",
+                                        1980: "1980",
+                                        1985: "1985",
+                                        1990: "1990",
+                                        1995: "1995",
+                                        2000: "2000",
+                                        2005: "2005",
+                                        2010: "2010",
+                                        2015: "2015",
+                                        2020: "2020",
+                                    },),
+        dbc.Label("Duration", html_for="range-slider"),
+        dcc.RangeSlider(id='duration', min = min(data['duration']), max = max(data['duration']), value=[90, 120], marks={
+                                        10: "10",
+                                        30: "30",
+                                        50: "50",
+                                        70: "70",
+                                        90: "90",
+                                        110: "110",
+                                        130: "130",
+                                        150: "150",
+                                        170: "170",
+                                        190: "190",
+                                        210: "210",
+                                        230: "230",
+                                    },),
+        html.Iframe(
+            id='bar',
+            style={'border-width': '0', 'width': '100%', 'height': '400px'})])
+
+                
+                    )),
+                ,
             ]
         ),
         html.Br(),
