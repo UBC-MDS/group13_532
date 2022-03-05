@@ -33,7 +33,7 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.MINTY])
 server = app.server
 
 app.layout = dbc.Container(
