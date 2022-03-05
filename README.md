@@ -1,4 +1,4 @@
-# Netflix Movie Dashboard: 
+# :movie_camera: Netflix Movie Dashboard :movie_camera:
 *Visualize movie trends on the world's most popular streaming platform!*
 
 ![Dashboard Overview](image/dash-overview.png "Dashboard Overview")
