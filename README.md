@@ -1,11 +1,11 @@
 # :movie_camera: Netflix Movie Dashboard :movie_camera:
-*Visualize movie trends on the world's most popular streaming platform!*
+*Visualize movie trends on the world's most popular streaming platform!* :tv:
 
 ![Dashboard Overview](image/dash-overview.png "Dashboard Overview")
 
 ## About
 
-Filming movies is an expensive and time-consuming process, so it's important that studios create movies that will appeal to large segments of the population. Netflix, one of the most popular streaming services available, is an ideal candidate for film studios to gather insights about global movie trends. Our Netflix Movie dashboard will help users make decisions about which types of films will most likely appeal to streaming platforms and their audiences.
+Filming movies is an expensive and time-consuming process, so it's important that studios create movies that will appeal to large segments of the population. Netflix, one of the most popular streaming services available, is an ideal candidate for film studios to gather insights about global movie trends. Our Netflix Movie dashboard will help users make decisions about which types of films will most likely appeal to streaming platforms and their audiences. :tada:
 
 This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allows users to explore the trends of film genres on Netflix, film length, film rating, and filming location by country. The motivation for our dashboard is to visualize the types of films will most likely appeal to streaming platforms and their audiences. For further details, check out [our full app proposal](https://github.com/UBC-MDS/movie_dashboard/blob/main/Proposal.md)
 
@@ -14,7 +14,7 @@ This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allow
 - Jasmine Ortega
 - Sufang Tan
 
-## Description of Dashboard : 
+## Description of Dashboard: 
 The app contains a landing page with three visualizations. A global filter of the year is located on the right-hand side of the menu controls these plots. Each plot will have an interactive filter to visualize trends over time. A dropdown menu will allow multi-selection of movie rating and a date range selector to narrow down genre results, based on movie release date.
 
 ### 1. Movie count over Country (Bar chart)
