@@ -60,6 +60,7 @@ app.layout = dbc.Container(
 
                 # Jasmine Part
                 dbc.Col(
+                    dbc.Card(dbc.CardBody(
                     html.Div(
                         [
                             html.Iframe(
@@ -80,10 +81,15 @@ app.layout = dbc.Container(
                                            2000: '2000',
                                            2020: '2020'
                                        }
-                                       )
+                                       ),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
                         ]
                     )
-                ),
+                    ))
+                    ),
 
 
                 # Mahsa Part
