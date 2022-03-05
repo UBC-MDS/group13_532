@@ -88,27 +88,40 @@ app.layout = dbc.Container(
 
                 # Mahsa Part
                 dbc.Col(
+                    dbc.Card(dbc.CardBody(
                     [
-                        dbc.Label("Year", html_for="range-slider"),
                         html.Div(
                             [
+                                html.Iframe(
+                                    id="line",
+                                    style={
+                                        "border-width": "0",
+                                        "width": "100%",
+                                        "height": "400px",
+                                    },
+                                ),
                                 dcc.RangeSlider(
                                     id="range-slider",
-                                    min=1970,
+                                    min=1942,
                                     max=2020,
-                                    value=[1995, 2020],
+                                    value=[2003, 2020],
                                     marks={
-                                        1970: "1970",
-                                        1975: "1975",
-                                        1980: "1980",
-                                        1985: "1985",
-                                        1990: "1990",
-                                        1995: "1995",
-                                        2000: "2000",
-                                        2005: "2005",
-                                        2010: "2010",
-                                        2015: "2015",
-                                        2020: "2020",
+                                        1942: '1942',
+                                        1962: '1962',
+                                        1980: '1980',
+                                        2000: '2000',
+                                        2020: '2020'
+                                        # 1970: "1970",
+                                        # 1975: "1975",
+                                        # 1980: "1980",
+                                        # 1985: "1985",
+                                        # 1990: "1990",
+                                        # 1995: "1995",
+                                        # 2000: "2000",
+                                        # 2005: "2005",
+                                        # 2010: "2010",
+                                        # 2015: "2015",
+                                        # 2020: "2020",
                                     },
                                 ),
                                 dbc.Label("Rating", html_for="rating_widget"),
@@ -123,18 +136,10 @@ app.layout = dbc.Container(
                                     multi=True,
                                 ),
                                 html.Br(),
-                                html.Iframe(
-                                    id="line",
-                                    style={
-                                        "border-width": "0",
-                                        "width": "100%",
-                                        "height": "400px",
-                                    },
-                                ),
                             ]
                         ),
                     ]
-                ),
+                ))),
             ]
         ),
     ]
