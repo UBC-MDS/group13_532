@@ -21,7 +21,7 @@ The app contains a landing page with three visualizations. A global filter of th
 
 A bar chart that depicts the number of movies belonging to a particular country in the selected period. Number of movies can also be filtered on the movie length ("Duration"), which will visualize which countries tend to produce longer movies. This visualization can help users gather insights into which countries are the most popular for filming locations. 
 
-### 2. Cast Count over Year (Scatter plot) :chart_with_upwards_trend:
+### 2. Cast Count over Year (Scatter plot) :family:
 
 A scatter plot that shows the average cast size of movies released on Netlix, filtered over the movie release year. This visualization would help users answer the question, "How large/small are the cast sizes of movies released on Netflic?", and allow studios to make informed decisions on the cast sizes of films that Netflix hosts. 
 
