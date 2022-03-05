@@ -7,12 +7,6 @@ alt.data_transformers.disable_max_rows()
 
 data = pd.read_csv("data/processed/clean_df.csv")
 
-#Sufang data wrangling
-for i, movie in enumerate(data['duration'].str.split()):
-    data['duration'][i] = int(movie[0])
-
-data = data.assign(country=data["country"].str.split(", ")).explode("country").dropna()
-
 # Jasmine data wrangling
 data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
@@ -39,7 +33,7 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(external_stylesheets=[dbc.themes.MINTY])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 app.layout = dbc.Container(
@@ -56,47 +50,7 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(
-                        html.Div([
-        dbc.Label("Year", html_for="range-slider"),
-        dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2015], marks={
-                                        1950: "1950",
-                                        1955: "1955",
-                                        1960: "1960",
-                                        1965: "1965",
-                                        1970: "1970",
-                                        1975: "1975",
-                                        1980: "1980",
-                                        1985: "1985",
-                                        1990: "1990",
-                                        1995: "1995",
-                                        2000: "2000",
-                                        2005: "2005",
-                                        2010: "2010",
-                                        2015: "2015",
-                                        2020: "2020",
-                                    },),
-        dbc.Label("Duration", html_for="range-slider"),
-        dcc.RangeSlider(id='duration', min = min(data['duration']), max = max(data['duration']), value=[90, 120], marks={
-                                        10: "10",
-                                        30: "30",
-                                        50: "50",
-                                        70: "70",
-                                        90: "90",
-                                        110: "110",
-                                        130: "130",
-                                        150: "150",
-                                        170: "170",
-                                        190: "190",
-                                        210: "210",
-                                        230: "230",
-                                    },),
-        html.Iframe(
-            id='bar',
-            style={'border-width': '0', 'width': '100%', 'height': '400px'})])
-
-                
-                    )),
+                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
                 ),
             ]
         ),
