@@ -1,6 +1,4 @@
-# Movie Dashboard
-# Netflix Movie Dashboard 
-### Visualize movie trends on the world's most popular streaming platform!
+# Netflix Movie Dashboard: *Visualize movie trends on the world's most popular streaming platform!*
 
 ## About
 
