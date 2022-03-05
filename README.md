@@ -1,4 +1,5 @@
-# Netflix Movie Dashboard: *Visualize movie trends on the world's most popular streaming platform!*
+# Netflix Movie Dashboard: 
+*Visualize movie trends on the world's most popular streaming platform!*
 
 ## About
 
@@ -11,7 +12,7 @@ This dashboard gives insight based on 10 years of Netflix data (2008 - 2019). Ou
 - Jasmine Ortega
 - Sufang Tan
 
-## Description of App
+## Description of Dashboard : 
 The app contains a landing page with three visualizations. A global filter of the year is located on the right-hand side of the menu controls these plots. Each plot will have an interactive filter to visualize trends over time. A dropdown menu will allow multi-selection of movie rating and a date range selector to narrow down genre results, based on movie release date.
 
 ### 1. Movie count over Country (Bar chart)
