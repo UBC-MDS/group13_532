@@ -1,6 +1,8 @@
 # Netflix Movie Dashboard: 
 *Visualize movie trends on the world's most popular streaming platform!*
 
+![Dashboard Overview](image/dash-overview.png "Dashboard Overview")
+
 ## About
 
 Filming movies is an expensive and time-consuming process, so it's important that studios create movies that will appeal to large segments of the population. Netflix, one of the most popular streaming services available, is an ideal candidate for film studios to gather insights about global movie trends. Our Netflix Movie dashboard will help users make decisions about which types of films will most likely appeal to streaming platforms and their audiences.
@@ -19,7 +21,7 @@ The app contains a landing page with three visualizations. A global filter of th
 
 A bar chart that depicts the number of movies belonging to a particular country in the selected period. Number of movies can also be filtered on the movie length ("Duration"), which will visualize which countries tend to produce longer movies. This visualization can help users gather insights into which countries are the most popular for filming locations. 
 
-### 2. Genre popularity (Pie chart)
+### 2. Cast count over Year 
 
 A scatter plot that shows the average cast size of movies released on Netlix, filtered over the movie release year. This visualization would help users answer the question, "How large/small are the cast sizes of movies released on Netflic?", and allow studios to make informed decisions on the cast sizes of films that Netflix hosts. 
 
