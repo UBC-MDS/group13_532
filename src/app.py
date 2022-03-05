@@ -198,6 +198,21 @@ def plot_cast(xmax):
 def update_output(xmax):
     return plot_cast(xmax)
 
+# Sufang plot function
+def plot_altair(year_range, duration_range):
+    chart = alt.Chart(data[(data["release_year"] > year_range[0]) & (data["release_year"] < year_range[1]) 
+                & (data["duration"] > duration_range[0])
+                & (data["duration"] < duration_range[1])],
+        title='Which Country Make the Most Movies ?').mark_bar().encode(
+    alt.X('country', sort='-y', title='Country'),
+    alt.Y('count()', title='Number of Movies Produced'),
+    color=alt.condition(
+        alt.datum.country == 'United State',  
+        alt.value('orange'),     # which sets the bar orange.
+        alt.value('steelblue')
+    )).interactive()
+    return chart.to_html()
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
