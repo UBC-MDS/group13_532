@@ -7,6 +7,17 @@ alt.data_transformers.disable_max_rows()
 
 data = pd.read_csv("data/processed/clean_df.csv")
 
+#Sufang data wrangling
+for i, movie in enumerate(data['duration'].str.split()):
+    data['duration'][i] = int(movie[0])
+
+data = data.assign(country=data["country"].str.split(", ")).explode("country").dropna()
+
+# Jasmine data wrangling
+data["cast_list"] = data["cast"].str.split(",")
+data["cast_count"] = data["cast_list"].str.len()
+cast_df = data[["title", "cast", "listed_in", "cast_count", "release_year"]]
+
 # Jasmine data wrangling
 data["cast_list"] = data["cast"].str.split(",")
 data["cast_count"] = data["cast_list"].str.len()
@@ -33,7 +44,7 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.MINTY])
 server = app.server
 
 app.layout = dbc.Container(
@@ -50,7 +61,47 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
+                    dbc.Card(dbc.CardBody(
+                        html.Div([
+        dbc.Label("Year", html_for="range-slider"),
+        dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2015], marks={
+                                        1950: "1950",
+                                        1955: "1955",
+                                        1960: "1960",
+                                        1965: "1965",
+                                        1970: "1970",
+                                        1975: "1975",
+                                        1980: "1980",
+                                        1985: "1985",
+                                        1990: "1990",
+                                        1995: "1995",
+                                        2000: "2000",
+                                        2005: "2005",
+                                        2010: "2010",
+                                        2015: "2015",
+                                        2020: "2020",
+                                    },),
+        dbc.Label("Duration", html_for="range-slider"),
+        dcc.RangeSlider(id='duration', min = min(data['duration']), max = max(data['duration']), value=[90, 120], marks={
+                                        10: "10",
+                                        30: "30",
+                                        50: "50",
+                                        70: "70",
+                                        90: "90",
+                                        110: "110",
+                                        130: "130",
+                                        150: "150",
+                                        170: "170",
+                                        190: "190",
+                                        210: "210",
+                                        230: "230",
+                                    },),
+        html.Iframe(
+            id='bar',
+            style={'border-width': '0', 'width': '100%', 'height': '400px'})])
+
+                
+                    )),
                 ),
             ]
         ),
@@ -60,6 +111,7 @@ app.layout = dbc.Container(
 
                 # Jasmine Part
                 dbc.Col(
+                    dbc.Card(dbc.CardBody(
                     html.Div(
                         [
                             html.Iframe(
@@ -80,35 +132,53 @@ app.layout = dbc.Container(
                                            2000: '2000',
                                            2020: '2020'
                                        }
-                                       )
+                                       ),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
                         ]
                     )
-                ),
+                    ))
+                    ),
 
 
                 # Mahsa Part
                 dbc.Col(
+                    dbc.Card(dbc.CardBody(
                     [
-                        dbc.Label("Year", html_for="range-slider"),
                         html.Div(
                             [
+                                html.Iframe(
+                                    id="line",
+                                    style={
+                                        "border-width": "0",
+                                        "width": "100%",
+                                        "height": "400px",
+                                    },
+                                ),
                                 dcc.RangeSlider(
                                     id="range-slider",
-                                    min=1970,
+                                    min=1942,
                                     max=2020,
-                                    value=[1995, 2020],
+                                    value=[2003, 2020],
                                     marks={
-                                        1970: "1970",
-                                        1975: "1975",
-                                        1980: "1980",
-                                        1985: "1985",
-                                        1990: "1990",
-                                        1995: "1995",
-                                        2000: "2000",
-                                        2005: "2005",
-                                        2010: "2010",
-                                        2015: "2015",
-                                        2020: "2020",
+                                        1942: '1942',
+                                        1962: '1962',
+                                        1980: '1980',
+                                        2000: '2000',
+                                        2020: '2020'
+                                        # 1970: "1970",
+                                        # 1975: "1975",
+                                        # 1980: "1980",
+                                        # 1985: "1985",
+                                        # 1990: "1990",
+                                        # 1995: "1995",
+                                        # 2000: "2000",
+                                        # 2005: "2005",
+                                        # 2010: "2010",
+                                        # 2015: "2015",
+                                        # 2020: "2020",
                                     },
                                 ),
                                 dbc.Label("Rating", html_for="rating_widget"),
@@ -123,18 +193,10 @@ app.layout = dbc.Container(
                                     multi=True,
                                 ),
                                 html.Br(),
-                                html.Iframe(
-                                    id="line",
-                                    style={
-                                        "border-width": "0",
-                                        "width": "100%",
-                                        "height": "400px",
-                                    },
-                                ),
                             ]
                         ),
                     ]
-                ),
+                ))),
             ]
         ),
     ]
@@ -153,17 +215,30 @@ def rating_plot(year_range, ratings):
             data[
                 (data["release_year"] > year_range[0])
                 & (data["release_year"] < year_range[1])
-            ]
+            ], title="Number of film produced based on movie rating"
         )
-        .mark_line()
-        .encode(x="release_year:O", y="count():Q", color="rating:O")
+        .mark_line().encode(
+            x=alt.X("release_year:O",
+                title="Movie Release Year",
+                # scale=alt.Scale(domain=[1942, 2020]),
+                # axis=alt.Axis(format='f')
+                ),
+
+            y=alt.Y("count():Q",
+                title="Number of Movie Produced",
+                axis=alt.Axis(tickMinStep=1)
+                ),
+
+            color=alt.Color('rating:O',
+                     scale=alt.Scale(scheme='dark2'), 
+                     legend=alt.Legend(title="Rating by color")))
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
         .interactive()
     )
     return line_plot.to_html()
 
 
-# this doesnt appear to do anything
+# Jasmin Call back
 @app.callback(
     Output('scatter', 'srcDoc'),
     Input('xslider', 'value'),
@@ -186,6 +261,27 @@ def plot_cast(xmax):
 
 def update_output(xmax):
     return plot_cast(xmax)
+
+#Sufang Call Back
+@app.callback(
+    Output('bar', 'srcDoc'),
+    Input('year','value'),
+    Input('duration','value'))
+
+# Sufang plot function
+def plot_altair(year_range, duration_range):
+    chart = alt.Chart(data[(data["release_year"] > year_range[0]) & (data["release_year"] < year_range[1]) 
+                & (data["duration"] > duration_range[0])
+                & (data["duration"] < duration_range[1])],
+        title='Which Country Make the Most Movies ?').mark_bar().encode(
+    alt.X('country', sort='-y', title='Country'),
+    alt.Y('count()', title='Number of Movies Produced'),
+    color=alt.condition(
+        alt.datum.country == 'United State',  
+        alt.value('orange'),     # which sets the bar orange.
+        alt.value('steelblue')
+    )).interactive()
+    return chart.to_html()
 
 
 if __name__ == "__main__":
