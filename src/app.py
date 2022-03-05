@@ -164,15 +164,27 @@ def rating_plot(year_range, ratings):
             data[
                 (data["release_year"] > year_range[0])
                 & (data["release_year"] < year_range[1])
-            ]
+            ], title="Number of film produced based on movie rating"
         )
-        .mark_line()
-        .encode(x="release_year:O", y="count():Q", color="rating:O")
+        .mark_line().encode(
+            x=alt.X("release_year:O",
+                title="Movie Release Year",
+                # scale=alt.Scale(domain=[1942, 2020]),
+                # axis=alt.Axis(format='f')
+                ),
+
+            y=alt.Y("count():Q",
+                title="Number of Movie Produced",
+                axis=alt.Axis(tickMinStep=1)
+                ),
+
+            color=alt.Color('rating:O',
+                     scale=alt.Scale(scheme='dark2'), 
+                     legend=alt.Legend(title="Rating by color")))
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
         .interactive()
     )
     return line_plot.to_html()
-
 
 # this doesnt appear to do anything
 @app.callback(
