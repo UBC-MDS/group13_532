@@ -50,7 +50,28 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
+                    dbc.Card(dbc.CardBody(
+                        html.Div([
+        dbc.Label("Year", html_for="range-slider"),
+        dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2015], marks={
+                                        1950: "1950",
+                                        1955: "1955",
+                                        1960: "1960",
+                                        1965: "1965",
+                                        1970: "1970",
+                                        1975: "1975",
+                                        1980: "1980",
+                                        1985: "1985",
+                                        1990: "1990",
+                                        1995: "1995",
+                                        2000: "2000",
+                                        2005: "2005",
+                                        2010: "2010",
+                                        2015: "2015",
+                                        2020: "2020",
+                                    },)
+                            ])
+                        
                 ),
             ]
         ),
@@ -197,6 +218,7 @@ def plot_cast(xmax):
 
 def update_output(xmax):
     return plot_cast(xmax)
+
 
 # Sufang plot function
 def plot_altair(year_range, duration_range):
