@@ -61,7 +61,7 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(
+                    dbc.Card(dbc.CardBody([
                         html.H5("Sufang Part"),
                         html.Div([
         dbc.Label("Year", html_for="range-slider"),
@@ -102,7 +102,7 @@ app.layout = dbc.Container(
             style={'border-width': '0', 'width': '100%', 'height': '400px'})])
 
                 
-                    )),
+                    ])),
                 ),
             ]
         ),
