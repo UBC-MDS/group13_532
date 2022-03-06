@@ -1,5 +1,5 @@
 # :movie_camera: Netflix Movie Dashboard :movie_camera:
-[*Visualize movie trends on the world's most popular streaming platform!*] (https://netflixmoviedashboard.herokuapp.com/) :tv:
+[*Visualize movie trends on the world's most popular streaming platform!*](https://netflixmoviedashboard.herokuapp.com/) :tv:
 
 ![Dashboard Overview](image/dash-overview.png "Dashboard Overview")
 
