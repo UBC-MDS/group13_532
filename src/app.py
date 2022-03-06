@@ -50,7 +50,7 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody(html.H5("Sufang Part"))),
+                    dbc.Card(dbc.CardBody(html.H5(""))),
                 ),
             ]
         ),
