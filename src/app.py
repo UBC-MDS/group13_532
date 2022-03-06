@@ -61,8 +61,8 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Col(
-                    dbc.Card(dbc.CardBody([
-                        html.H5(""),
+                    dbc.Card(dbc.CardBody(
+                        html.H5("")
         #                 html.Div([
         # dbc.Label("Year", html_for="range-slider"),
         # dcc.RangeSlider(id='year', min = min(data['release_year']), max= max(data['release_year']), value=[1995, 2015], marks={
@@ -100,9 +100,6 @@ app.layout = dbc.Container(
         # html.Iframe(
         #     id='bar',
         #     style={'border-width': '0', 'width': '100%', 'height': '400px'})])
-
-                
-                    ]
                     )),
                 ),
             ]
