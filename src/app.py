@@ -8,8 +8,7 @@ alt.data_transformers.disable_max_rows()
 data = pd.read_csv("data/processed/clean_df.csv")
 
 #Sufang data wrangling
-for i, movie in enumerate(data['duration'].str.split()):
-    data['duration'][i] = int(movie[0])
+data['duration'] = data['duration'].apply(lambda x: int(x.split(" ")[0]))
 
 data = data.assign(country=data["country"].str.split(", ")).explode("country").dropna()
 
