@@ -264,11 +264,11 @@ def plot_cast(xmax):
 def update_output(xmax):
     return plot_cast(xmax)
 
-#Sufang Call Back
-# @app.callback(
-#     Output('bar', 'srcDoc'),
-#     Input('year','value'),
-#     Input('duration','value'))
+# Sufang Call Back
+@app.callback(
+    Output('bar', 'srcDoc'),
+    Input('year','value'),
+    Input('duration','value'))
 
 # Sufang plot function
 def plot_altair(year_range, duration_range):
