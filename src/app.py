@@ -46,6 +46,7 @@ default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 app = Dash(external_stylesheets=[dbc.themes.MINTY])
 server = app.server
 
+app.title = "Netflix Movie Trends"
 app.layout = dbc.Container(
     [
         html.Br(),
