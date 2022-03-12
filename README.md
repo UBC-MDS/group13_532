@@ -14,6 +14,16 @@ This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allow
 - Jasmine Ortega
 - Sufang Tan
 
+## Run the app locally
+
+To run this app using Docker write the following commands after cloning the repo:
+
+```bash
+cd 532-ia1-flordandrea
+docker-compose up
+```
+Finally, open the app in the followin URL http://localhost:8000/
+
 ## Description of Dashboard: 
 The app contains a landing page with three visualizations. A global filter of the year is located on the right-hand side of the menu controls these plots. Each plot will have an interactive filter to visualize trends over time. A dropdown menu will allow multi-selection of movie rating and a date range selector to narrow down genre results, based on movie release date.
 
