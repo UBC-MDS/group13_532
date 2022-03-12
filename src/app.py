@@ -54,7 +54,7 @@ app.layout = dbc.Container(
         dbc.Row(
             dbc.Col(
                 html.Div("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!"),
-                width={"size": 3, "offset": 5},
+#                 width={"size": 3, "offset": 5},
                 style={"font-weight": "bold"},
             )
         ),
