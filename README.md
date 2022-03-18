@@ -1,7 +1,7 @@
 # :movie_camera: Netflix Movie Dashboard :movie_camera:
 [*Visualize movie trends on the world's most popular streaming platform!*](https://netflixmoviedashboard.herokuapp.com/) :tv:
 
-![Dashboard Overview](image/final_dash.png "Dashboard Overview")
+
 
 ## About
 
@@ -9,6 +9,7 @@ Filming movies is an expensive and time-consuming process, so it's important tha
 
 This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allows users to explore the trends of film genres on Netflix, film length, film rating, and filming location by country. The motivation for our dashboard is to visualize the types of films will most likely appeal to streaming platforms and their audiences. For further details, check out [our full app proposal](https://github.com/UBC-MDS/movie_dashboard/blob/main/Proposal.md)
 
+![Dashboard Overview](image/final_dash.png "Dashboard Overview")
 ## Contributors
 - Masha Sasarafrazi
 - Jasmine Ortega
