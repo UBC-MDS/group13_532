@@ -43,24 +43,133 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
+app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 server = app.server
 
 app.title = "Netflix Movie Dashboard"
+
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
 
 app.layout = dbc.Container(
     [
         html.Br(),
         dbc.Row(
             dbc.Col(
-                html.Div("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!"),
-#                 width={"size": 3, "offset": 5},
-                style={"font-weight": "bold"},
+                dbc.Card(dbc.CardBody(html.B("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!")),color='#db0000'),
+                style={"font-weight": "bold", "color": "#000000"},
+                className='text-center mt-4 mb-5'
             )
         ),
+        
+        dbc.Row(
+            [
+
+                # Jasmine Part
+                dbc.Col([
+                    dbc.Row(
+                        dbc.Card(dbc.CardBody(html.B("Cast size analysis")),color='#831010'),
+                style={"color": "#000000"},
+                className='text-center'
+                    ),
+                    dbc.Row(
+                    dbc.Card(dbc.CardBody(
+                    html.Div(
+                        [
+                            html.Iframe(
+                                id="scatter",
+                                style={
+                                    'border-width': '0',
+                                    'width': '100%',
+                                    'height': '400px'
+                                }
+                            ),
+                            dcc.Slider(id='xslider',
+                                       min=1942, max=2020,
+                                       value=1990,
+                                       marks={
+                                           1942: '1942',
+                                           1962: '1962',
+                                           1980: '1980',
+                                           2000: '2000',
+                                           2020: '2020'
+                                       }
+                                       ),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
+                            html.Br(),
+                        ]
+                    )
+                    ),color='#564d4d'),
+                    style={"color": "#000000", 'marginLeft': 'auto', 'marginRight': 'auto'},
+                    className='text-center'
+                    )]),
+
+
+                # Mahsa Part
+                dbc.Col([
+                    dbc.Row(
+                        dbc.Card(dbc.CardBody(html.B("Movie Production based on Rating")),color='#831010'),
+                style={ "color": "#000000"},
+                className='text-center'
+                    ),
+                    dbc.Row(
+                    dbc.Card(dbc.CardBody(
+                    [
+                        html.Div(
+                            [
+                                html.Iframe(
+                                    id="line",
+                                    style={
+                                        "border-width": "0",
+                                        "width": "100%",
+                                        "height": "400px",
+                                    },
+                                ),
+                                dcc.RangeSlider(
+                                    id="range-slider",
+                                    min=1942,
+                                    max=2020,
+                                    value=[2003, 2020],
+                                    marks={
+                                        1942: '1942',
+                                        1962: '1962',
+                                        1980: '1980',
+                                        2000: '2000',
+                                        2020: '2020'
+                                    },
+                                ),
+                                dbc.Label("Rating", html_for="rating_widget"),
+                                dcc.Dropdown(
+                                    id="rating_widget",
+                                    value=default_rating_list,
+                                    placeholder="Select Rating...",
+                                    options=[
+                                        {"label": rating, "value": rating}
+                                        for rating in rating_list
+                                    ],
+                                    multi=True,
+                                ),
+                                html.Br(),
+                            ]
+                        ),
+                    ]
+                ),color='#564d4d'))]),
+            ]
+        ),
+        html.Br(),
         dbc.Row(
             [
                 # Sufang Part
+                dbc.Row(
+                        dbc.Card(dbc.CardBody(html.B("Movie production based on country")),color='#831010'),
+                style={ "color": "#000000"},
+                className='text-center'
+                    ),
+                dbc.Row(
                 dbc.Col(
                     dbc.Card(dbc.CardBody([
                         html.H5(""),
@@ -104,104 +213,10 @@ app.layout = dbc.Container(
 
                 
                     ]
-                    )),
-                ),
+                    ),color='#564d4d'),
+                )),
             ]
-        ),
-        html.Br(),
-        dbc.Row(
-            [
-
-                # Jasmine Part
-                dbc.Col(
-                    dbc.Card(dbc.CardBody(
-                    html.Div(
-                        [
-                            html.Iframe(
-                                id="scatter",
-                                style={
-                                    'border-width': '0',
-                                    'width': '100%',
-                                    'height': '400px'
-                                }
-                            ),
-                            dcc.Slider(id='xslider',
-                                       min=1942, max=2020,
-                                       value=2020,
-                                       marks={
-                                           1942: '1942',
-                                           1962: '1962',
-                                           1980: '1980',
-                                           2000: '2000',
-                                           2020: '2020'
-                                       }
-                                       ),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                            html.Br(),
-                        ]
-                    )
-                    ))
-                    ),
-
-
-                # Mahsa Part
-                dbc.Col(
-                    dbc.Card(dbc.CardBody(
-                    [
-                        html.Div(
-                            [
-                                html.Iframe(
-                                    id="line",
-                                    style={
-                                        "border-width": "0",
-                                        "width": "100%",
-                                        "height": "400px",
-                                    },
-                                ),
-                                dcc.RangeSlider(
-                                    id="range-slider",
-                                    min=1942,
-                                    max=2020,
-                                    value=[2003, 2020],
-                                    marks={
-                                        1942: '1942',
-                                        1962: '1962',
-                                        1980: '1980',
-                                        2000: '2000',
-                                        2020: '2020'
-                                        # 1970: "1970",
-                                        # 1975: "1975",
-                                        # 1980: "1980",
-                                        # 1985: "1985",
-                                        # 1990: "1990",
-                                        # 1995: "1995",
-                                        # 2000: "2000",
-                                        # 2005: "2005",
-                                        # 2010: "2010",
-                                        # 2015: "2015",
-                                        # 2020: "2020",
-                                    },
-                                ),
-                                dbc.Label("Rating", html_for="rating_widget"),
-                                dcc.Dropdown(
-                                    id="rating_widget",
-                                    value=default_rating_list,
-                                    placeholder="Select Rating...",
-                                    options=[
-                                        {"label": rating, "value": rating}
-                                        for rating in rating_list
-                                    ],
-                                    multi=True,
-                                ),
-                                html.Br(),
-                            ]
-                        ),
-                    ]
-                ))),
-            ]
-        ),
+        )
     ]
 )
 
@@ -231,6 +246,7 @@ def rating_plot(year_range, ratings):
                 title="Number of Movie Produced",
                 axis=alt.Axis(tickMinStep=1)
                 ),
+            tooltip= "count():Q",
 
             color=alt.Color('rating:O',
                      scale=alt.Scale(scheme='dark2'), 
@@ -280,8 +296,9 @@ def plot_altair(year_range, duration_range):
         title='Which Country Make the Most Movies ?').mark_bar().encode(
     alt.X('country', sort='-y', title='Country'),
     alt.Y('count()', title='Number of Movies Produced'),
+    tooltip= "count()",
     color=alt.condition(
-        alt.datum.country == 'United State',  
+        alt.datum.country == 'United States',  
         alt.value('orange'),     # which sets the bar orange.
         alt.value('steelblue')
     )).interactive()
