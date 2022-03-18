@@ -276,7 +276,7 @@ def plot_cast(xmax):
 
         y=alt.Y("mean(cast_count)",
                 title="Average Cast Size",
-                 axis=alt.Axis(tickMinStep=1)),
+                axis=alt.Axis(tickMinStep=1)),
         tooltip= "mean(cast_count)"
     )
     return cast_plot.to_html()
