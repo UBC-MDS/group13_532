@@ -133,7 +133,7 @@ app.layout = dbc.Container(
                                     id="range-slider",
                                     min=1942,
                                     max=2020,
-                                    value=[2003, 2020],
+                                    value=[1998, 2020],
                                     marks={
                                         1942: '1942',
                                         1962: '1962',
@@ -251,9 +251,13 @@ def rating_plot(year_range, ratings):
             color=alt.Color('rating:O',
                      scale=alt.Scale(scheme='dark2'), 
                      legend=alt.Legend(title="Rating by color")))
+        .configure(background='#564d4d')
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
         .interactive()
+
     )
+    line_plot.configure_title(
+            color='white')
     return line_plot.to_html()
 
 
@@ -265,7 +269,7 @@ def rating_plot(year_range, ratings):
 # Jasmine plot function
 def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], 
-    title="Average Cast Size Per Year").mark_line(point=alt.OverlayMarkDef(color="green")).encode(
+    title="Average Cast Size Per Year").mark_line(point=alt.OverlayMarkDef(color="white")).encode(
         x=alt.X("release_year",
                 title="Movie Release Year",
                 scale=alt.Scale(domain=[1942, xmax]),
@@ -274,8 +278,9 @@ def plot_cast(xmax):
         y=alt.Y("mean(cast_count)",
                 title="Average Cast Size",
                 axis=alt.Axis(tickMinStep=1)),
+        color = alt.value("#db0000"),
         tooltip= "mean(cast_count)"
-    )
+    ).configure(background='#564d4d')
     return cast_plot.to_html()
 
 
@@ -299,9 +304,9 @@ def plot_altair(year_range, duration_range):
     tooltip= "count()",
     color=alt.condition(
         alt.datum.country == 'United States',  
-        alt.value('orange'),     # which sets the bar orange.
-        alt.value('steelblue')
-    )).interactive()
+        alt.value('red'),     # which sets the bar orange.
+        alt.value('white')
+    )).configure(background='#564d4d').interactive()
     return chart.to_html()
 
 
