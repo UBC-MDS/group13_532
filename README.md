@@ -1,7 +1,7 @@
 # :movie_camera: Netflix Movie Dashboard :movie_camera:
 [*Visualize movie trends on the world's most popular streaming platform!*](https://netflixmoviedashboard.herokuapp.com/) :tv:
 
-![Dashboard Overview](image/dash-overview.png "Dashboard Overview")
+
 
 ## About
 
@@ -9,6 +9,7 @@ Filming movies is an expensive and time-consuming process, so it's important tha
 
 This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allows users to explore the trends of film genres on Netflix, film length, film rating, and filming location by country. The motivation for our dashboard is to visualize the types of films will most likely appeal to streaming platforms and their audiences. For further details, check out [our full app proposal](https://github.com/UBC-MDS/movie_dashboard/blob/main/Proposal.md)
 
+![Dashboard Overview](image/final_dash.png "Dashboard Overview")
 ## Contributors
 - Masha Sasarafrazi
 - Jasmine Ortega
@@ -19,7 +20,7 @@ This dashboard is based on 10 years of Netflix data (2008 - 2019). The app allow
 To run this app using Docker, clone the app and use the following commands into terminal:
 
 ```bash
-cd your-repo-name
+cd your-repo-path
 docker-compose up
 ```
 
@@ -32,7 +33,7 @@ The app contains a landing page with three visualizations. A global filter of th
 
 A bar chart that depicts the number of movies belonging to a particular country in the selected period. Number of movies can also be filtered on the movie length ("Duration"), which will visualize which countries tend to produce longer movies. This visualization can help users gather insights into which countries are the most popular for filming locations. 
 
-### 2. Cast Count over Year (Scatter plot) :family:
+### 2. Cast Count over Year (Line plot) :family:
 
 A scatter plot that shows the average cast size of movies released on Netlix, filtered over the movie release year. This visualization would help users answer the question, "How large/small are the cast sizes of movies released on Netflic?", and allow studios to make informed decisions on the cast sizes of films that Netflix hosts. 
 
