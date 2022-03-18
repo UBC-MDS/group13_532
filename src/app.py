@@ -74,6 +74,7 @@ app.layout = dbc.Container(
                 style={"color": "#000000"},
                 className='text-center'
                     ),
+                    html.Br(),
                     dbc.Row(
                     dbc.Card(dbc.CardBody(
                     html.Div(
@@ -116,6 +117,7 @@ app.layout = dbc.Container(
                 style={ "color": "#000000"},
                 className='text-center'
                     ),
+                    html.Br(),
                     dbc.Row(
                     dbc.Card(dbc.CardBody(
                     [
@@ -169,6 +171,7 @@ app.layout = dbc.Container(
                 style={ "color": "#000000"},
                 className='text-center'
                     ),
+                html.Br(),
                 dbc.Row(
                 dbc.Col(
                     dbc.Card(dbc.CardBody([
