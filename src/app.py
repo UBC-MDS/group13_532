@@ -77,7 +77,11 @@ app.layout = dbc.Container(
                 # Jasmine Part
                 dbc.Col([
                     dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Cast size analysis")),
+                        dbc.Card(dbc.CardBody([html.B("Cast size analysis", className="card-title"),
+                        html.H6(
+                    "Average cast size changes over years with tend line by year",
+                    className="card-text",
+                ),]),
                                  color='#000000'),
                 style={"font-weight": "bold", 
                        "color": "#ffffff", 
