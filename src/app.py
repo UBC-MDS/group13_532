@@ -43,7 +43,7 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
 
 app.title = "Netflix Movie Dashboard"
@@ -58,8 +58,15 @@ app.layout = dbc.Container(
         html.Br(),
         dbc.Row(
             dbc.Col(
-                dbc.Card(dbc.CardBody(html.B("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!")),color='#db0000'),
-                style={"font-weight": "bold", "color": "#000000"},
+                dbc.Card(
+                    dbc.CardBody(
+                        html.B("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!"),
+                    ), color="dark", 
+                        inverse=True),
+                style={"font-weight": "bold", 
+                       "color": "#000000", 
+                       "font-family" :"Garamond",
+                      "font-size" : "120%"},
                 className='text-center mt-4 mb-5'
             )
         ),
@@ -70,8 +77,12 @@ app.layout = dbc.Container(
                 # Jasmine Part
                 dbc.Col([
                     dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Cast size analysis")),color='#831010'),
-                style={"color": "#000000"},
+                        dbc.Card(dbc.CardBody(html.B("Cast size analysis")),
+                                 color='#000000'),
+                style={"font-weight": "bold", 
+                       "color": "#ffffff", 
+                       "font-family" :"Garamond",
+                      "font-size" : "120%"},
                 className='text-center'
                     ),
                     dbc.Row(
@@ -103,7 +114,7 @@ app.layout = dbc.Container(
                             html.Br(),
                         ]
                     )
-                    ),color='#564d4d'),
+                    ),color='#000000'),
                     style={"color": "#000000", 'marginLeft': 'auto', 'marginRight': 'auto'},
                     className='text-center'
                     )]),
@@ -112,8 +123,14 @@ app.layout = dbc.Container(
                 # Mahsa Part
                 dbc.Col([
                     dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Movie Production based on Rating")),color='#831010'),
-                style={ "color": "#000000"},
+                        dbc.Card(
+                            dbc.CardBody(
+                                html.B("Movie Counts Based on Film Rating")),
+                                 color='#000000'),
+                style={"font-weight": "bold", 
+                       "color": "#ffffff", 
+                       "font-family" :"Garamond",
+                      "font-size" : "120%"},
                 className='text-center'
                     ),
                     dbc.Row(
@@ -145,6 +162,8 @@ app.layout = dbc.Container(
                                 dbc.Label("Rating", html_for="rating_widget"),
                                 dcc.Dropdown(
                                     id="rating_widget",
+                                    style={"color" :"#000000",
+                                           "background-color" :"#000000"},
                                     value=default_rating_list,
                                     placeholder="Select Rating...",
                                     options=[
@@ -157,7 +176,7 @@ app.layout = dbc.Container(
                             ]
                         ),
                     ]
-                ),color='#564d4d'))]),
+                ),color='#000000'))]),
             ]
         ),
         html.Br(),
@@ -165,8 +184,12 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Movie production based on country")),color='#831010'),
-                style={ "color": "#000000"},
+                        dbc.Card(dbc.CardBody(html.B("Movie production based on country")),
+                                 color='#000000'),
+                style={"font-weight": "bold", 
+                       "color": "#ffffff", 
+                       "font-family" :"Garamond",
+                      "font-size" : "120%"},
                 className='text-center'
                     ),
                 dbc.Row(
@@ -213,7 +236,7 @@ app.layout = dbc.Container(
 
                 
                     ]
-                    ),color='#564d4d'),
+                    ),color='#000000'),
                 )),
             ]
         )
@@ -251,9 +274,16 @@ def rating_plot(year_range, ratings):
             color=alt.Color('rating:O',
                      scale=alt.Scale(scheme='dark2'), 
                      legend=alt.Legend(title="Rating by color")))
-        .configure(background='#564d4d')
+        .configure(background='#000000')
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
         .interactive()
+        .configure_title(color = "white")
+        .configure_axis(labelColor ="white",
+                        titleColor = "white",
+                        tickColor ="white")
+        .configure_legend(labelColor="white",
+                         titleColor ="white")
+                          
 
     )
     line_plot.configure_title(
@@ -261,7 +291,7 @@ def rating_plot(year_range, ratings):
     return line_plot.to_html()
 
 
-# Jasmin Call back
+# Jasmine Call back
 @app.callback(
     Output('scatter', 'srcDoc'),
     Input('xslider', 'value'),
@@ -280,7 +310,9 @@ def plot_cast(xmax):
                 axis=alt.Axis(tickMinStep=1)),
         color = alt.value("#db0000"),
         tooltip= "mean(cast_count)"
-    ).configure(background='#564d4d')
+    ).configure(background='#000000').interactive().configure_title(color = "white").configure_axis(labelColor ="white",
+                        titleColor = "white",
+                        tickColor ="white")
     return cast_plot.to_html()
 
 
@@ -306,7 +338,9 @@ def plot_altair(year_range, duration_range):
         alt.datum.country == 'United States',  
         alt.value('red'),     # which sets the bar orange.
         alt.value('white')
-    )).configure(background='#564d4d').interactive()
+    )).configure(background='#000000').interactive().configure_title(color = "white").configure_axis(labelColor ="white",
+                        titleColor = "white",
+                        tickColor ="white")
     return chart.to_html()
 
 
