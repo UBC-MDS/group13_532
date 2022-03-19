@@ -128,8 +128,11 @@ app.layout = dbc.Container(
                 dbc.Col([
                     dbc.Row(
                         dbc.Card(
-                            dbc.CardBody(
-                                html.B("Movie Counts Based on Film Rating")),
+                            dbc.CardBody([html.B("Movie Counts Based on Film Rating", className="card-title"),
+                        html.H6(
+                    "Number of movies produced by different ratings changes over years",
+                    className="card-text",
+                ),]),
                                  color='#000000'),
                 style={"font-weight": "bold", 
                        "color": "#ffffff", 
@@ -188,7 +191,11 @@ app.layout = dbc.Container(
             [
                 # Sufang Part
                 dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Movie production based on country")),
+                        dbc.Card(dbc.CardBody([html.B("Movie production based on country", className="card-title"),
+                        html.H6(
+                    "Number of movies produced by countries in specied year and movie length range ",
+                    className="card-text",
+                ),]),
                                  color='#000000'),
                 style={"font-weight": "bold", 
                        "color": "#ffffff", 
