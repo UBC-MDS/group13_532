@@ -123,7 +123,9 @@ app.layout = dbc.Container(
                 # Mahsa Part
                 dbc.Col([
                     dbc.Row(
-                        dbc.Card(dbc.CardBody(html.B("Movie Production based on Rating")),
+                        dbc.Card(
+                            dbc.CardBody(
+                                html.B("Movie Counts Based on Film Rating")),
                                  color='#000000'),
                 style={"font-weight": "bold", 
                        "color": "#ffffff", 
@@ -297,7 +299,7 @@ def rating_plot(year_range, ratings):
 # Jasmine plot function
 def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], 
-    title="Average Cast Size Per Year").mark_circle(point=alt.OverlayMarkDef(color="white")).encode(
+    title="Average Cast Size Per Year").mark_line(point=alt.OverlayMarkDef(color="white")).encode(
         x=alt.X("release_year",
                 title="Movie Release Year",
                 scale=alt.Scale(domain=[1942, xmax]),
