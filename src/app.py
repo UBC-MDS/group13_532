@@ -297,7 +297,7 @@ def rating_plot(year_range, ratings):
 # Jasmine plot function
 def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], 
-    title="Average Cast Size Per Year").mark_point(point=alt.OverlayMarkDef(color="white")).encode(
+    title="Average Cast Size Per Year").mark_circle(point=alt.OverlayMarkDef(color="white")).encode(
         x=alt.X("release_year",
                 title="Movie Release Year",
                 scale=alt.Scale(domain=[1942, xmax]),
