@@ -5,7 +5,7 @@ import pandas as pd
 
 alt.data_transformers.disable_max_rows()
 
-data = pd.read_csv("data/processed/clean_df.csv")
+data = pd.read_csv("../data/processed/clean_df.csv")
 
 #Sufang data wrangling
 data['duration'] = data['duration'].apply(lambda x: int(x.split(" ")[0]))
@@ -43,7 +43,7 @@ rating_list = [
 
 default_rating_list = ["TV-G", "TV-14", "R", "TV-Y", "PG"]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 server = app.server
 
 app.title = "Netflix Movie Dashboard"
@@ -58,8 +58,15 @@ app.layout = dbc.Container(
         html.Br(),
         dbc.Row(
             dbc.Col(
-                dbc.Card(dbc.CardBody(html.B("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!")),color='#db0000'),
-                style={"font-weight": "bold", "color": "#000000"},
+                dbc.Card(
+                    dbc.CardBody(
+                        html.B("Netflix Movie Dashboard: Visualize movie trends on the world's most popular streaming platform!"),
+                    ), color="dark", 
+                        inverse=True),
+                style={"font-weight": "bold", 
+                       "color": "#000000", 
+                       "font-family" :"Garamond",
+                      "font-size" : "120%"},
                 className='text-center mt-4 mb-5'
             )
         ),
@@ -251,7 +258,7 @@ def rating_plot(year_range, ratings):
             color=alt.Color('rating:O',
                      scale=alt.Scale(scheme='dark2'), 
                      legend=alt.Legend(title="Rating by color")))
-        .configure(background='#564d4d')
+        .configure(background='#000000')
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
         .interactive()
 
@@ -269,7 +276,7 @@ def rating_plot(year_range, ratings):
 # Jasmine plot function
 def plot_cast(xmax):
     cast_plot = alt.Chart(cast_df[cast_df["release_year"] < xmax], 
-    title="Average Cast Size Per Year").mark_line(point=alt.OverlayMarkDef(color="white")).encode(
+    title="Average Cast Size Per Year").mark_point(point=alt.OverlayMarkDef(color="white")).encode(
         x=alt.X("release_year",
                 title="Movie Release Year",
                 scale=alt.Scale(domain=[1942, xmax]),
@@ -280,7 +287,7 @@ def plot_cast(xmax):
                 axis=alt.Axis(tickMinStep=1)),
         color = alt.value("#db0000"),
         tooltip= "mean(cast_count)"
-    ).configure(background='#564d4d')
+    ).configure(background='#000000').interactive()
     return cast_plot.to_html()
 
 
@@ -306,9 +313,8 @@ def plot_altair(year_range, duration_range):
         alt.datum.country == 'United States',  
         alt.value('red'),     # which sets the bar orange.
         alt.value('white')
-    )).configure(background='#564d4d').interactive()
+    )).configure(background='#000000').interactive()
     return chart.to_html()
-
 
 if __name__ == "__main__":
     app.run_server(debug=True)
