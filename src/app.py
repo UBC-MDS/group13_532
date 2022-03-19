@@ -5,7 +5,7 @@ import pandas as pd
 
 alt.data_transformers.disable_max_rows()
 
-data = pd.read_csv("../data/processed/clean_df.csv")
+data = pd.read_csv("data/processed/clean_df.csv")
 
 #Sufang data wrangling
 data['duration'] = data['duration'].apply(lambda x: int(x.split(" ")[0]))
