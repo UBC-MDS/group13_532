@@ -272,7 +272,7 @@ def rating_plot(year_range, ratings):
             tooltip= "count():Q",
 
             color=alt.Color('rating:O',
-                     scale=alt.Scale(scheme='dark2'), 
+                     scale=alt.Scale(scheme='yelloworangered'), 
                      legend=alt.Legend(title="Rating by color")))
         .configure(background='#000000')
         .transform_filter(alt.FieldOneOfPredicate(field="rating", oneOf=ratings))
